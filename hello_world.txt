@@ -1,3 +1,1 @@
 Test text addition from Ubuntu VM.
-
-Test change with new commit.
