@@ -7,6 +7,18 @@ function getComputerChoice(){
     return choices[computerChoice];
 }
 
+function checkWin(){
+    if (playerScore === 5){
+        winner.textContent = `You win! With a score of ${playerScore}, the computer had ${computerScore}.`;
+    }
+    else if (computerScore === 5){
+        winner.textContent =  `You lose! Computer had a score of ${computerScore}, you had ${playerScore}.`;
+    }
+    else{
+        winner.textContent = ``;
+    }
+}
+
 function playRound(playerSelection, computerSelection){
     if (playerSelection === "rock"){
         if (computerSelection === "paper"){
@@ -44,27 +56,46 @@ function playRound(playerSelection, computerSelection){
         else{
             return "Tie Round!"
         }
-    } 
+    }
+    
 }
 
 function playGame(){
-    for (let i = 0; i < 5; i++){
-        const playerSelection = prompt("Type Selection!").toLowerCase();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    if (playerScore > computerScore){
-        console.log(`You win! With a score of ${playerScore}, the computer had ${computerScore}.`);
-    }
-    else if (computerScore > playerScore){
-        console.log(`You lose! Computer had a score of ${computerScore}, you had ${playerScore}.`);
-    }
-    else{
-        console.log(`Tie game! You both had ${playerScore} points!`);
-    }
+    const rockBtn = document.querySelector('#rock')
+    const paperBtn = document.querySelector('#paper')
+    const scissorsBtn = document.querySelector('#scissors')
+    let computerSelection = getComputerChoice();
+
+    rockBtn.addEventListener('click', () => {
+        computerSelection = getComputerChoice();
+        console.log(playRound('rock', computerSelection))
+        score.textContent = `Score: You - ${playerScore} Computer - ${computerScore}`
+        checkWin()
+    })
+
+    paperBtn.addEventListener('click', () => {
+        computerSelection = getComputerChoice();
+        console.log(playRound('paper', computerSelection))
+        score.textContent = `Score: You - ${playerScore} Computer - ${computerScore}`
+        checkWin()
+    });
+
+    scissorsBtn.addEventListener('click', () => {
+        computerSelection = getComputerChoice();
+        console.log(playRound('scissors', computerSelection))
+        score.textContent = `Score: You - ${playerScore} Computer - ${computerScore}`
+        checkWin()
+    })
 }
 
+const results = document.createElement('div');
+const score = document.createElement('p');
+const winner = document.createElement('p');
+
+score.textContent = `Score: You - ${playerScore} Computer - ${computerScore}`
+
+results.appendChild(score);
+results.appendChild(winner);
+document.querySelector('body').appendChild(results)
+
 playGame();
-
-
-
