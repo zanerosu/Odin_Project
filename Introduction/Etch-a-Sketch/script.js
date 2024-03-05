@@ -14,6 +14,7 @@ function generateGrid(userSize){
             gridDiv.addEventListener('mouseenter', (event) => {
                 //Random color background
                 //gridDiv.style.backgroundColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${alphaVal += 0.10})`
+                
                 //Black background color
                 gridDiv.style.backgroundColor = `rgba(0, 0, 0, ${alphaVal += 0.10})`
             })
