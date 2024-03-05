@@ -8,8 +8,12 @@
 
 .gridDiv{
     width: 30px;
-    height:auto;
+    height: 30px;
     border:1px black solid;
     box-sizing: border-box;
     display: flex;
+}
+
+#newGrid{
+    margin-bottom: 30px;
 }
