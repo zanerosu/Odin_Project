@@ -1,0 +1,15 @@
+#mainContainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    width:480px;
+    height:480px;
+}
+
+.gridDiv{
+    width: 30px;
+    height:auto;
+    border:1px black solid;
+    box-sizing: border-box;
+    display: flex;
+}
