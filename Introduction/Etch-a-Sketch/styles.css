@@ -4,12 +4,13 @@
     flex-wrap: wrap; 
     width:480px;
     height:480px;
+    border:1px black solid;
 }
 
 .gridDiv{
     width: 30px;
     height: 30px;
-    border:1px black solid;
+    
     box-sizing: border-box;
     display: flex;
 }

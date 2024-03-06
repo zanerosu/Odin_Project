@@ -35,7 +35,7 @@ function removeGrid(){
 btnNewGrid = document.querySelector('#newGrid');
 btnNewGrid.addEventListener('click', ()=>{
     let userSize = prompt("Enter grid size (Max 100): ")
-    while (userSize > 100 || userSize < 0){
+    while (userSize > 100 || userSize < 0 || isNaN(userSize)){
         alert("Please enter a valid size!")
         userSize = prompt("Enter grid size (Max 100): ")
     }
