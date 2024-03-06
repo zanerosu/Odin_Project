@@ -1,3 +1,6 @@
 [submodule "javascript-exercises"]
 	path = javascript-exercises
 	url = git@github.com:zanerosu/javascript-exercises.git
+[submodule "JavaScript30"]
+	path = JavaScript30
+	url = git@github.com:zanerosu/JavaScript30.git
