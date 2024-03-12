@@ -1,3 +1,77 @@
-html{
-    
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+#main-body{
+    width:600px;
+    height:800px;
+    background-color: darkgray;
+    margin:0 auto 0 auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#display{
+    width: 90%;
+    padding: 5px 10px 5px 10px;
+    margin: 15px 10px 10px 10px;
+    align-self: center;
+    text-align: right;
+    font-size: 45px;
+
+    background-color: white;
+}
+
+#buttons{
+    display: flex;
+    align-self: center;
+    user-select: none;
+}
+
+#buttons:hover{
+    cursor: pointer;
+}
+
+
+#num-btns{
+    align-self: center;
+    width:300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.num-button{
+    width: 80px;
+    height: 80px;
+    background-color: lightblue;
+    border-radius: 20px;
+    margin:10px 10px 10px 10px;
+
+    font-size: 60px;
+    text-align: center;
+    vertical-align: center;
+    line-height: 80px;
+}
+
+#operator-btns{
+    display: flex;
+    flex-direction: column;
+}
+
+.op-button{
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 80px;
+    margin:10px 10px 10px 10px;
+
+
+    font-size: 60px;
+    text-align: center;
+    vertical-align: center;
+    line-height: 80px;
+}
+
+
+
