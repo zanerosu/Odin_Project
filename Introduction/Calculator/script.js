@@ -47,7 +47,7 @@ num_btns.addEventListener('click', (event) =>{
     if(numberRegex.test(event.target.id)){
         display.textContent += event.target.id
     }
-})
+});
 
 const clearAll = document.querySelector("#clearAll");
 const clear = document.querySelector("#clear");
@@ -61,6 +61,16 @@ clearAll.addEventListener('click', () =>{
 clear.addEventListener('click', (event) =>{
     display.textContent = display.textContent.slice(0, -1);
 })
+
+
+buttons = document.querySelector('.buttons')
+//Adds style to all button clicks
+buttons.addEventListener('click', (event)=>{
+    const button = event.target
+   
+});
+
+
 
 
 

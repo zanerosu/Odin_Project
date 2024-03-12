@@ -36,7 +36,6 @@ body{
     cursor: pointer;
 }
 
-
 #num-btns{
     align-self: center;
     width:300px;
@@ -55,6 +54,10 @@ body{
     text-align: center;
     vertical-align: center;
     line-height: 80px;
+}
+
+.num-button:active{
+    background: rgb(19, 107, 136) !important;
 }
 
 #operator-btns{
