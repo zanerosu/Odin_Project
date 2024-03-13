@@ -61,6 +61,15 @@ operator_btns.addEventListener('click', (event) =>{
         operator = event.target.id;
         display.textContent = total;
         numA = Number(total);
+
+        hasDecimal = false;
+        resultArray = display.textContent.split("")
+        resultArray.forEach(element => {
+        if (element === '.'){
+            hasDecimal = true;
+        }
+    });
+
     }else{
         numA = Number(display.textContent);
         operator = event.target.id;
@@ -77,6 +86,15 @@ equalBtn.addEventListener('click', ()=>{
     numB = Number(display.textContent);
     total = String(operate(numA, numB, operator));
     display.textContent = total;
+
+    hasDecimal = false;
+    resultArray = display.textContent.split("")
+    resultArray.forEach(element => {
+        if (element === '.'){
+            hasDecimal = true;
+        }
+    });
+
     console.log("EQUAL CLICK")
     console.log(`Operation = ${operator} numA = ${numA} numB = ${numB} total = ${total}`);
 })
@@ -86,13 +104,18 @@ equalBtn.addEventListener('click', ()=>{
 const clearAll = document.querySelector("#clearAll");
 const clear = document.querySelector("#clear");
 
-//Clears entire display
-clearAll.addEventListener('click', () =>{
+function resetAll(){
     display.textContent = "";
     numA = "";
     numB = "";
     total = "";
     operator = "";
+    hasDecimal = false;
+}
+
+//Clears entire display
+clearAll.addEventListener('click', () =>{
+    resetAll();
     console.log(`Operation = ${operator} numA = ${numA} numB = ${numB} total = ${total}`);
 });
 
@@ -102,8 +125,17 @@ clear.addEventListener('click', (event) =>{
 });
 
 
+//-------------------Change Sign and Decimal Functions -----------------------
 
+const decimal = document.querySelector("#decimal")
+const sign = document.querySelector("#sign")
+let hasDecimal = false
 
-
+decimal.addEventListener('click', () =>{
+    if (hasDecimal === false){
+        display.textContent += '.';
+        hasDecimal = true;
+    }
+})
 
 
