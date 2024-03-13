@@ -17,21 +17,20 @@ function divide(a, b){
 let numA = ""
 let numB = ""
 let operator = ""
-
 let total = ""
 
 function operate(numA, numB, operator){
     if (operator === 'add'){
-        return add(numA, numB)
+        return numA + numB
     }
     else if (operator === 'subtract'){
-        return subtract(numA, numB)
+        return numA - numB
     }
     else if (operator === 'multiply'){
-        return multiply(numA, numB)
+        return numA * numB
     }
     else if (operator === 'divide'){
-        return divide(numA, numB)
+        return numA / numB
     }
     else{
         alert('Invalid operator!')
@@ -48,11 +47,7 @@ const operator_btns = document.querySelector("#operator-btns");
 //Adds number to display if the id of the button clicked is a value of 0-9;
 num_btns.addEventListener('click', (event) =>{
     if(numberRegex.test(event.target.id)){
-        if (numA === Number(total)){
-            display.textContent = event.target.id
-        } else {
-            display.textContent += event.target.id
-        }
+        display.textContent += event.target.id;
     }
     console.log("NUM CLICK")
     console.log(`Operation = ${operator} numA = ${numA} numB = ${numB} total = ${total}`);
@@ -60,9 +55,10 @@ num_btns.addEventListener('click', (event) =>{
 
 //Stores first number and operation into respective variables
 operator_btns.addEventListener('click', (event) =>{
-    if (numA != ""){
+    if (numA != "" && Number(total) != Number(display.textContent)){
         numB = Number(display.textContent)
         total = String(operate(numA, numB, operator));
+        operator = event.target.id;
         display.textContent = total;
         numA = Number(total);
     }else{
@@ -96,6 +92,7 @@ clearAll.addEventListener('click', () =>{
     numA = "";
     numB = "";
     total = "";
+    operator = "";
     console.log(`Operation = ${operator} numA = ${numA} numB = ${numB} total = ${total}`);
 });
 
