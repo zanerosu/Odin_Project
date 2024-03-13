@@ -1,0 +1,6 @@
+Next steps:
+
+On operator button press:
+1. Save display text as numA
+2. Save operator
+3. Clear display

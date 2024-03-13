@@ -63,6 +63,16 @@ body{
 #operator-btns{
     display: flex;
     flex-direction: column;
+    user-select: none;
+}
+
+.op-button:active{
+    background: rgb(139, 139, 139);
+}
+
+#clear-btns{
+    display: flex;
+    flex-direction: column;
 }
 
 .op-button{
