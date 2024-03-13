@@ -38,6 +38,7 @@ function operate(numA, numB, operator){
 };
 
 const display = document.querySelector("#display");
+display.textContent = '0'
 
 //--------------Number button and operator button functions---------------------
 const num_btns = document.querySelector("#num-btns");
@@ -47,7 +48,11 @@ const operator_btns = document.querySelector("#operator-btns");
 //Adds number to display if the id of the button clicked is a value of 0-9;
 num_btns.addEventListener('click', (event) =>{
     if(numberRegex.test(event.target.id)){
-        display.textContent += event.target.id;
+        if (display.textContent === '0'){
+            display.textContent = event.target.id;
+        } else{
+            display.textContent += event.target.id;
+        }
     }
     console.log("NUM CLICK")
     console.log(`Operation = ${operator} numA = ${numA} numB = ${numB} total = ${total}`);
@@ -105,7 +110,7 @@ const clearAll = document.querySelector("#clearAll");
 const clear = document.querySelector("#clear");
 
 function resetAll(){
-    display.textContent = "";
+    display.textContent = "0";
     numA = "";
     numB = "";
     total = "";
@@ -139,3 +144,6 @@ decimal.addEventListener('click', () =>{
 })
 
 
+sign.addEventListener('click', ()=>{
+    display.textContent = (Number(display.textContent) * -1).toString();
+})
