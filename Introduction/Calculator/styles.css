@@ -70,6 +70,10 @@ body{
     background: rgb(139, 139, 139);
 }
 
+.op-button-current{
+    background:orangered !important;
+}
+
 #clear-btns{
     display: flex;
     flex-direction: column;
@@ -87,6 +91,24 @@ body{
     text-align: center;
     vertical-align: center;
     line-height: 80px;
+}
+
+.clear-button{
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 80px;
+    margin:10px 10px 10px 10px;
+
+
+    font-size: 60px;
+    text-align: center;
+    vertical-align: center;
+    line-height: 80px;
+}
+
+.clear-button:active{
+    background: rgb(139, 139, 139);
 }
 
 #equal{
