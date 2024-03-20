@@ -1,10 +1,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
 
 body{
     font-family: 'Roboto', sans-serif;
+    margin:0;
 }
-
 
 fieldset{
     border: none;
+}
+
+#main-container{
+    display: flex;
+}
+
+#img-left{
+    background-image: url(images/biel-morro-J_F_003jcEQ-unsplash.jpg);
+    background-size: cover;
+    width: 35vw;
+    height: 100vh;
+}
+
+#logo-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:2vw;
+    width:100%;
+    height:15vh;
+    background-color: rgba(0, 0, 0, 0.459);
+    
+    margin-top: 20vh;
+}
+
+#logo-image{
+    height:80%;
+}
+
+#logo-title{
+    color:white;
+    font-size: 3rem;
+    font-family: "Jura", sans-serif;
+}
+
+#content-right{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15vh;
+    width:65vw;
+    background-color: rgb(231, 231, 231);
+}
+
+#welcome-message{
+    font-size: 1.5rem;
+    max-width: 70%;
+    padding-left: 5vw;
+}
+
+#main-form{
+    background-color: white;
+    padding-left: 5vw;
+}
+
+h2{
+    padding-top: 1vh;
+    font-size: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+p{
+    padding-left: 5vw;
+}
+
+input{
+    width: 200px;
+    border: 1px solid rgba(128, 128, 128, 0.678);
+    font-size: 1.2rem;
+    border-radius:3px ;
 }

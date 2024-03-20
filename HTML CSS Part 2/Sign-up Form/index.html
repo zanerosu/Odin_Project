@@ -10,43 +10,60 @@
 <body> 
     <div id="main-container">
         <div id="img-left">
-
+            <div id="logo-container">
+                <img id="logo-image" src="images/odin-lined.png">
+                <h1 id="logo-title">Lorem</h1>
+            </div>
         </div>
 
         <div id="content-right">
-            <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas vulputate arcu, vel dapibus urna laoreet a. Ut molestie nisl a feugiat eleifend. Etiam ornare.</h1>
+            <h1 id="welcome-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas vulputate arcu, vel dapibus urna laoreet a. Ut molestie nisl a feugiat eleifend. Etiam ornare.</h1>
             <div id="main-form">
                 <h2>Lorem ipsum dolor!</h2>
                 <form action="" method="get" id="account-form">
-                    <fieldset>
-                        <label for="first-name">First Name</label><br>
-                        <input type="text" id="first-name" name="first-name" required><br>
-    
-                        <label for="last-name">Last Name</label><br>
-                        <input type="text" id="last-name" name="last-name" required><br>
-                    </fieldset>
 
-                   <fieldset>
-                        <label for="email">Email</label><br>
-                        <input type="email" id="email" name="email" required><br>
-
-                        <label for="phone-num">Phone Number</label><br>
-                        <input type="tel" id="phone-num" name="phone-num" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" ><br>
-                   </fieldset>
+                    <div class="row">
+                        <div class="input-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="phone-num">Phone Number</label>
+                            <input type="tel" id="phone-num" name="phone-num" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                        </div>
+                    </div>
                    
-                    <fieldset>
-                        <label for="password">Password</label><br>
-                        <input type="password" id="password" name="password" oninput="check_pass()" required><br>
-    
-                        <label for="password-conf">Confirm Password</label><br>
-                        <input type="password" id="password-conf" name="password-conf" oninput="check_pass()"><br>
-                        <span id="message"></span>
-                    </fieldset>
-
+                   <div class="row">
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" oninput="check_pass()" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="password-conf">Confirm Password</label>
+                            <input type="password" id="password-conf" name="password-conf" oninput="check_pass()">
+                            <span id="message"></span>
+                        </div>
+                        
+                   </div>
+                    
                     <button type="submit" id="create_btn" disabled>Create Account</button>
                 </form>
             </div>
-            
+
             <p>Already have an account? <a>Log in</a> </p>
         </div>
     </div>
