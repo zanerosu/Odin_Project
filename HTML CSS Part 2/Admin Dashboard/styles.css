@@ -20,12 +20,14 @@ body{
 }
 
 #sidebar{
-    border: 1px solid black;
     display: grid;
     grid-area: 1/ 1/ 3/ 2; /* row-start / column-start / row-end / column-end */
     background-color: var(--accent-color-1);
 
-    grid-template-rows: 0.2fr 0.8fr 1fr
+    grid-template-rows: 0.2fr 0.8fr 1fr;
+
+    box-shadow: 2px 0 2px var(--accent-color-1);
+    z-index: 1;
 }
 
 #page-title{
@@ -60,15 +62,17 @@ body{
 }
 
 #header{
-    border: 1px solid black;
     display: grid;
     grid-area: 1/ 2/ 2/ 3;
 }
 
 #main-content{
-    border: 1px solid black;
+   
     background-color: var(--main-content-color);
     
     display: grid;
     grid-area: 2/ 2/ 3/ 3;
+
+    box-shadow: inset 5px 0 20px rgba(0, 0, 0, 0.288);
+    
 }
