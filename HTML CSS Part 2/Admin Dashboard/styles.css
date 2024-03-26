@@ -72,6 +72,10 @@ body{
     padding-left: 5%;
 }
 
+#main-nav-options{
+    margin-top: 50%;
+}
+
 #header{
     display: grid;
     grid-area: 1/ 2/ 2/ 3;
@@ -121,6 +125,7 @@ body{
     align-items: center;
     justify-content: left;
     padding-left: 8%;
+    padding-bottom:10px;
 }
 
 #user-picture-welcome{
@@ -173,19 +178,29 @@ body{
     grid-template-columns: 2fr 1fr;
 }
 
+.content-header{
+    padding-left: 35px;
+    margin-bottom: 0;
+}
+
+#project-container{
+    display: grid;
+    grid-template-rows: min-content;
+    grid-area: 1/1/3/2;
+}
 
 #projects{
-    grid-area: 1/1/3/2;
     display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(200px, 240px));
+    grid-template-rows: repeat(auto-fit, min(240px));
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    padding:30px;
+    padding:10px 30px 30px 30px;
     gap:20px;
 }
 
 .project{
     background-color: white;
     border-radius: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.2);
 }
 
 .project-title, .project-description {
@@ -206,13 +221,73 @@ body{
 
 #announcements{
     grid-area: 1/2/2/3;
-    
+    background-color: white;
+    margin-top: 10px;
+    width:80%;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.2);
+}
+
+.announcement{
+    text-align: left;
+    padding:10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.a-title{
+    padding: 0px;
+    margin-bottom: 0;
+}
+
+.a-content{
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+.a-separator{
+    content: '';
+    height: 2px;
+    background-color: var(--accent-color-1);
 }
 
 #trending{
     grid-area: 2/2/3/3;
-   
+    background-color: white;
+    margin-top: 10px;
+    width:80%;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.2);
 }
+
+.t-user{
+    display: grid;
+    grid-template-columns: min-content max-content;
+    align-items: center;
+    justify-content: left;
+    padding-top: 10px;
+    padding-left:50px;
+}
+
+.t-profile{
+    grid-area: 1/1/2/2;
+    height:60px
+}
+
+.t-username{
+    grid-area: 1/2/2/2;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    padding-left: 5px;
+}
+
+
 
 
 
