@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap');
+
+body{
+    display: flex;
+    background-image: url(images/old-library-wallpaper.jpg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left;
+
+    flex-direction: column;
+    margin: 0;
+}
+
+#header{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+
+
+    background-color: rgba(0, 0, 0, 0.473);
+    width:100%;
+    height:fit-content;
+    position: sticky;
+}
+
+#header-logo{
+    font-family: "Goudy Bookletter 1911", serif;
+    display: flex;
+    gap:10px;
+    padding-left: 5%;
+    align-items: center;
+    justify-content: flex-start;
+    color:white;
+}
+
+#h-title{
+    font-size: 3rem;
+}
+
+#h-icon{
+    font-size: 4rem;
+}
+
+#Page-Header{
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+#Library{
+    padding-left: 5%;
+    padding-right: 5%;
+    display: grid;
+    grid-template-rows: repeat(fit-content, min(240px));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap:20px;
+}
+
+.book{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+    height: 200px;
+}
+
+.b-title{
+    padding: 15px;
+    margin: 5px 0 0 0;
+}
+
+.b-author{
+    margin: 0;
+}
+
+.b-pages{
+    margin: 5px;
+}
+
+.b-status{
+    margin: 0px 0 10px 0;
+}
