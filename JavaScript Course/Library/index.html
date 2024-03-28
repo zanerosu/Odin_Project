@@ -19,9 +19,44 @@
             <h1 id="h-title">My Library</h1>
         </div>
     </div>
-    <h1 id="Page-Header">My Books</h1>
-    <div id="Library">
 
+    <div id="page-content">
+        <h1 id="Page-Header">My Books:</h1>
+        <div id="Library">
+
+        </div>
+
+        <button id="new-book-btn" class="primary-btn">Add Book</button>
     </div>
+    
+
+    <dialog id="form-dialog">
+        <form method="dialog" id="new-book-form">
+            <div class="input-group">
+                <label for="input-title" class="input-label">Book Title</label>
+                <input type="text" id="input-title" class="input-text" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="input-author" class="input-label">Author</label>
+                <input type="text" id="input-author" class="input-text" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="input-pages" class="input-label"># of Pages</label>
+                <input type="number" id="input-pages" class="input-text" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="checkbox" id="input-status" class="input-checkbox" name="box1" value=true>
+                <label for="input-status" class="input-label">Read? </label>
+            </div>
+
+            <div class="btn-group">
+                <button id="create-book" class="primary-btn" type="submit" >Create</button>
+                <button id="cancel-book" class="primary-btn" type="reset" >Cancel</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>

@@ -23,36 +23,70 @@ function addDefaultBooks(){
 }
 addDefaultBooks();
 
-console.log(myLibrary)
+const library = document.querySelector('#Library');
+const page_header = document.querySelector("#Page-Header");
+
+const btn_newBook = document.querySelector("#new-book-btn");
+const page_content = document.querySelector("#page-content");
+
+btn_newBook.addEventListener('click', (event)=>{
+    new_book_dialog.showModal();
+    page_content.style.filter = "brightness(30%)";
+});
+
+const btn_create = document.querySelector('#create-book');
+const btn_cancel = document.querySelector('#cancel-book');
+const new_book_dialog = document.querySelector("#form-dialog");
+
+btn_cancel.addEventListener('click', ()=> {
+    new_book_dialog.close("No book created")
+    page_content.style.filter = "brightness(100%)";
+});
+
+btn_create.addEventListener('click', ()=>{
+    event.preventDefault();
+    new_book_dialog.close("No book created")
+    page_content.style.filter = "brightness(100%)"
+    addBookToLibrary();
+    displayBooks();
+    document.querySelector('#input-title').value = '';
+    document.querySelector('#input-author').value = '';
+    document.querySelector('#input-pages').value = '';
+    document.querySelector('#input-status').checked = false;
+})
 
 
-function addBookToLibrary(userInput){
+function addBookToLibrary(){
+    const new_title = document.querySelector('#input-title').value;
+    const new_author = document.querySelector('#input-author').value;
+    const new_pages = document.querySelector('#input-pages').value;
 
-    
+    let new_status = document.querySelector('#input-status').checked;
+    console.log(new_status);
+
+    let new_Book = new Book(new_title, new_author, new_pages, new_status);
+    myLibrary.push(new_Book);
 }
 
-
-
 function displayBooks(){
-    let library = document.querySelector('#Library');
-    
+    library.innerHTML = '';
     myLibrary.forEach((book) => {
-        let book_container = document.createElement("div");
+        const book_container = document.createElement("div");
         book_container.classList.add("book");
 
-        let book_title = document.createElement("h1");
+        const book_title = document.createElement("h1");
         book_title.classList.add("b-title");
         book_title.textContent = book.title;
 
-        let book_author = document.createElement("h3");
+        const book_author = document.createElement("h3");
         book_author.classList.add("b-author");
         book_author.textContent = book.author;
         
-        let book_pages = document.createElement("p");
+        const book_pages = document.createElement("p");
         book_pages.classList.add("b-pages");
         book_pages.textContent = book.pages;
 
-        let book_status = document.createElement("p");
+        const book_status = document.createElement("p");
         book_status.classList.add("b-status");
         book_status.textContent = book.read ? "Read" : "Not Read";
 
