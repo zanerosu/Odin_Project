@@ -23,6 +23,8 @@ function addDefaultBooks(){
 }
 addDefaultBooks();
 
+
+//Test comment
 const library = document.querySelector('#Library');
 const page_header = document.querySelector("#Page-Header");
 
