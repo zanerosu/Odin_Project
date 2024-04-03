@@ -58,9 +58,22 @@ function Cell(){
     };
 }
 
+//Retrieves any DOM elements from the html page.
+function getDomElements(){
+    const boardDiv = document.querySelector('#main-board');
+    const currPlayer = document.querySelector('#curr-player');
+
+    const getBoardDiv = () => boardDiv;
+
+    const getCurrPlayer = () => currPlayer;
+
+    return {getBoardDiv, getCurrPlayer};
+}
+
 function GameController(playerOneName = 'Player One', playerTwoName = 'Player Two'){
 
     const board = Gameboard();
+    const Elements = getDomElements();
     
     const players = [
         {
@@ -83,6 +96,7 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
 
     const printNewRound = () => {
         board.printBoard();
+        Elements.getCurrPlayer().textContent = `${getActivePlayer().name}'s turn.`;
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
@@ -145,16 +159,43 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
                 activePlayer = players[0];
                 board.createNewBoard();
                 printNewRound();
+                renderBoard();
             } else{
                 switchPlayerTurn();
                 printNewRound();
+                renderBoard();
             }
         } else {
             printNewRound();
+            renderBoard();
         }
         
     };
+    
+    const renderBoard = () => {
+        boardDiv = Elements.getBoardDiv();
 
+        
+        boardDiv.innerHTML = '';
+
+        currBoard = board.getBoard();
+
+        for (let r = 0; r < 3; r++){
+            for (let c = 0; c < 3; c++){
+                const cellDiv = document.createElement("div");
+                cellDiv.classList.add('cell');
+                if (currBoard[r][c].getCellValue() !== 0){
+                    cellDiv.textContent = currBoard[r][c].getCellValue();
+                }
+                cellDiv.addEventListener('click', () => {
+                    playRound(r, c);
+                })
+                boardDiv.appendChild(cellDiv);
+            }
+        }
+    }
+
+    renderBoard();
     printNewRound();
 
     return{
