@@ -164,4 +164,3 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
 }
 
 const game = GameController();
-
