@@ -62,18 +62,23 @@ function Cell(){
 function getDomElements(){
     const boardDiv = document.querySelector('#main-board');
     const currPlayer = document.querySelector('#curr-player');
+    const startGameDiv = document.querySelector('#game-start');
+    const startBtn = document.querySelector('#startBtn');
+    const nameForm = document.querySelector('#player-names-form');
 
     const getBoardDiv = () => boardDiv;
-
     const getCurrPlayer = () => currPlayer;
+    const getStartGameDiv = () => startGameDiv;
+    const getStartBtn = () => startBtn;
+    const getNameForm = () => nameForm; 
 
-    return {getBoardDiv, getCurrPlayer};
+    return {getBoardDiv, getCurrPlayer, getStartGameDiv, getStartBtn, getNameForm};
 }
 
-function GameController(playerOneName = 'Player One', playerTwoName = 'Player Two'){
-
+function GameController(playerOneName, playerTwoName){
     const board = Gameboard();
     const Elements = getDomElements();
+    boardDiv = Elements.getBoardDiv();
     
     const players = [
         {
@@ -173,10 +178,9 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
     };
     
     const renderBoard = () => {
-        boardDiv = Elements.getBoardDiv();
-
-        
+        boardDiv.style.display = "grid";
         boardDiv.innerHTML = '';
+        
 
         currBoard = board.getBoard();
 
@@ -204,4 +208,18 @@ function GameController(playerOneName = 'Player One', playerTwoName = 'Player Tw
     };
 }
 
-const game = GameController();
+function getPlayerNames (){
+    const Elements = getDomElements();
+    let p1Name = 'Player 1'
+    let p2Name = 'Player 2'
+    nameForm = Elements.getNameForm();
+
+    nameForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        p1Name = document.querySelector('#P1-Name').value;
+        p2Name = document.querySelector('#P2-Name').value;
+        GameController(p1Name, p2Name)
+    })
+}
+
+getPlayerNames();
