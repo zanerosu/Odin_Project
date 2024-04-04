@@ -84,3 +84,11 @@ h1{
     z-index: -1;
 }
 
+
+.winning-square{
+    background-color: rgba(26, 128, 0, 0.719);
+}
+
+#play-again{
+    display: none;
+}

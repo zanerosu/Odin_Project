@@ -45,6 +45,7 @@ function Gameboard(){
 function Cell(){
     
     let value = 0;
+    let isWinner = false;
 
     const addMarker = (player) => {
         value = player;
@@ -52,33 +53,43 @@ function Cell(){
 
     const getCellValue = () => value;
 
+    const setWinningCell = (boolValue) => {
+        isWinner = boolValue; 
+    };
+
+    const getWinningCell = () => isWinner;
+
+
     return {
         addMarker,
-        getCellValue
+        getCellValue,
+        setWinningCell,
+        getWinningCell
     };
 }
 
 //Retrieves any DOM elements from the html page.
 function getDomElements(){
-    const boardDiv = document.querySelector('#main-board');
-    const currPlayer = document.querySelector('#curr-player');
-    const startGameDiv = document.querySelector('#game-start');
-    const startBtn = document.querySelector('#startBtn');
-    const nameForm = document.querySelector('#player-names-form');
 
-    const getBoardDiv = () => boardDiv;
-    const getCurrPlayer = () => currPlayer;
-    const getStartGameDiv = () => startGameDiv;
-    const getStartBtn = () => startBtn;
-    const getNameForm = () => nameForm; 
+    const getBoardDiv = () => document.querySelector('#main-board');
+    const getCurrPlayer = () => document.querySelector('#curr-player');
+    const getStartGameDiv = () => document.querySelector('#game-start');
+    const getStartBtn = () => document.querySelector('#startBtn');
+    const getNameForm = () => document.querySelector('#player-names-form');
+    const getWinnerMsg = () => document.querySelector('#winner-msg');
+    const getReplayBtn = () => document.querySelector('#play-again');
 
-    return {getBoardDiv, getCurrPlayer, getStartGameDiv, getStartBtn, getNameForm};
+    return {getBoardDiv, getCurrPlayer, getStartGameDiv, getStartBtn, getNameForm, getWinnerMsg, getReplayBtn};
 }
 
 function GameController(playerOneName, playerTwoName){
     const board = Gameboard();
     const Elements = getDomElements();
-    boardDiv = Elements.getBoardDiv();
+
+    const boardDiv = Elements.getBoardDiv();
+    const winnerMsg = Elements.getWinnerMsg();
+    const replayBtn = Elements.getReplayBtn();
+    const currPlayer = Elements.getCurrPlayer();
     
     const players = [
         {
@@ -101,7 +112,8 @@ function GameController(playerOneName, playerTwoName){
 
     const printNewRound = () => {
         board.printBoard();
-        Elements.getCurrPlayer().textContent = `${getActivePlayer().name}'s turn.`;
+        currPlayer.style.display = "block"
+        currPlayer.textContent = `${getActivePlayer().name}'s turn.`;
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
@@ -116,11 +128,13 @@ function GameController(playerOneName, playerTwoName){
     const checkWinner = () => {
         currBoard = board.getBoard();
 
-        console.log(currBoard[0][0].getCellValue());
         //Check vertical
         for (let r = 0; r < 3; r++){
             for (let c = 0; c < 3; c++){
                 if(r + 2 < 3 && checkLine(currBoard[r][c],currBoard[r + 1][c], currBoard[r + 2][c])){
+                    currBoard[r][c].setWinningCell(true);
+                    currBoard[r+1][c].setWinningCell(true);
+                    currBoard[r+2][c].setWinningCell(true);
                     return true
                 }
             }
@@ -130,6 +144,9 @@ function GameController(playerOneName, playerTwoName){
         for (let r = 0; r < 3; r++){
             for (let c = 0; c < 3; c++){
                 if(c + 2 < 3 && checkLine(currBoard[r][c],currBoard[r][c + 1], currBoard[r][c + 2])){
+                    currBoard[r][c].setWinningCell(true);
+                    currBoard[r][c+1].setWinningCell(true);
+                    currBoard[r][c+2].setWinningCell(true);
                     return true
                 }
             }
@@ -139,6 +156,9 @@ function GameController(playerOneName, playerTwoName){
         for (let r = 0; r < 3; r++){
             for (let c = 0; c < 3; c++){
                 if(c + 2 < 3 && r + 2 < 3 && checkLine(currBoard[r][c],currBoard[r + 1][c + 1], currBoard[r + 2][c + 2])){
+                    currBoard[r][c].setWinningCell(true);
+                    currBoard[r+1][c+1].setWinningCell(true);
+                    currBoard[r+2][c+2].setWinningCell(true);
                     return true
                 }
             }
@@ -148,6 +168,9 @@ function GameController(playerOneName, playerTwoName){
         for (let r = 0; r < 3; r++){
             for (let c = 0; c < 3; c++){
                 if(c - 2 >= 0 && r + 2 < 3 && checkLine(currBoard[r][c],currBoard[r + 1][c - 1], currBoard[r + 2][c - 2])){
+                    currBoard[r][c].setWinningCell(true);
+                    currBoard[r+1][c-1].setWinningCell(true);
+                    currBoard[r+2][c-2].setWinningCell(true);
                     return true
                 }
             }
@@ -160,11 +183,25 @@ function GameController(playerOneName, playerTwoName){
     const playRound = (row, column) =>{
         if (board.markField(row, column, getActivePlayer().marker) === true){
             if(checkWinner()){
+                //Retrieve needed DOM elements
+                
+
+                winnerMsg.style.display = "block"
                 console.log(`${getActivePlayer().name} wins!`)
+                winnerMsg.textContent = `${getActivePlayer().name} wins!`;
                 activePlayer = players[0];
-                board.createNewBoard();
-                printNewRound();
                 renderBoard();
+                boardDiv.style.pointerEvents = "none";
+                replayBtn.style.display ="block"
+
+                replayBtn.addEventListener('click', () => {
+                    replayBtn.style.display = "none"
+                    winnerMsg.style.display = "none"
+                    currPlayer.style.display = "none"
+                    boardDiv.style.display = "none"
+                    getPlayerNames();
+                });
+            
             } else{
                 switchPlayerTurn();
                 printNewRound();
@@ -189,6 +226,9 @@ function GameController(playerOneName, playerTwoName){
                 const cellDiv = document.createElement("div");
                 cellDiv.classList.add('cell');
                 if (currBoard[r][c].getCellValue() !== 0){
+                    if(currBoard[r][c].getWinningCell() == true){
+                        cellDiv.classList.add('winning-square');
+                    }
                     cellDiv.textContent = currBoard[r][c].getCellValue();
                 }
                 cellDiv.addEventListener('click', () => {
@@ -210,14 +250,23 @@ function GameController(playerOneName, playerTwoName){
 
 function getPlayerNames (){
     const Elements = getDomElements();
+    const startGameDiv = Elements.getStartGameDiv();
+    const nameForm = Elements.getNameForm();
+    const boardDiv = Elements.getBoardDiv(); 
+
     let p1Name = 'Player 1'
     let p2Name = 'Player 2'
-    nameForm = Elements.getNameForm();
+    let inputFields = document.querySelectorAll('.name-input');
+    
+    startGameDiv.style.display = "flex";
 
     nameForm.addEventListener('submit', (event) => {
         event.preventDefault();
         p1Name = document.querySelector('#P1-Name').value;
         p2Name = document.querySelector('#P2-Name').value;
+        startGameDiv.style.display = "none";
+        boardDiv.style.pointerEvents = "auto";
+
         GameController(p1Name, p2Name)
     })
 }
