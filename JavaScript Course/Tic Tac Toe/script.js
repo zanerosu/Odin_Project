@@ -180,28 +180,40 @@ function GameController(playerOneName, playerTwoName){
         return
     }
 
+    const checkTie = () => {
+        for (let r = 0; r < 3; r++){
+            for (let c = 0; c < 3; c++){
+                if (currBoard[r][c].getCellValue() === 0){
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
+
+    const completeGame = () => {
+        winnerMsg.style.display = "block"
+        console.log(`${getActivePlayer().name} wins!`)
+        winnerMsg.textContent = `${getActivePlayer().name} wins!`;
+        activePlayer = players[0];
+        boardDiv.style.pointerEvents = "none";
+        replayBtn.style.display ="block"
+
+        replayBtn.addEventListener('click', () => {
+            replayBtn.style.display = "none"
+            winnerMsg.style.display = "none"
+            currPlayer.style.display = "none"
+            boardDiv.style.display = "none"
+            getPlayerNames();
+        });
+    }
+
     const playRound = (row, column) =>{
         if (board.markField(row, column, getActivePlayer().marker) === true){
             if(checkWinner()){
-                //Retrieve needed DOM elements
-                
-
-                winnerMsg.style.display = "block"
-                console.log(`${getActivePlayer().name} wins!`)
-                winnerMsg.textContent = `${getActivePlayer().name} wins!`;
-                activePlayer = players[0];
                 renderBoard();
-                boardDiv.style.pointerEvents = "none";
-                replayBtn.style.display ="block"
-
-                replayBtn.addEventListener('click', () => {
-                    replayBtn.style.display = "none"
-                    winnerMsg.style.display = "none"
-                    currPlayer.style.display = "none"
-                    boardDiv.style.display = "none"
-                    getPlayerNames();
-                });
-            
+                completeGame();
             } else{
                 switchPlayerTurn();
                 printNewRound();
@@ -217,19 +229,22 @@ function GameController(playerOneName, playerTwoName){
     const renderBoard = () => {
         boardDiv.style.display = "grid";
         boardDiv.innerHTML = '';
-        
 
         currBoard = board.getBoard();
-
         for (let r = 0; r < 3; r++){
             for (let c = 0; c < 3; c++){
                 const cellDiv = document.createElement("div");
                 cellDiv.classList.add('cell');
                 if (currBoard[r][c].getCellValue() !== 0){
+                    
                     if(currBoard[r][c].getWinningCell() == true){
                         cellDiv.classList.add('winning-square');
                     }
                     cellDiv.textContent = currBoard[r][c].getCellValue();
+                    if(checkTie()){
+                        completeGame();
+                        winnerMsg.textContent = `Tie Game!`;
+                    }
                 }
                 cellDiv.addEventListener('click', () => {
                     playRound(r, c);
