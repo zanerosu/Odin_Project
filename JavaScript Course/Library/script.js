@@ -1,19 +1,25 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class myBook{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
+
+const testBook = new myBook('Bruh', 'Frank Herbert', 450, false);
+
+console.log(testBook);
 
 //Adds some default books into library for styling purposes
 function addDefaultBooks(){
-    const Book_1 = new Book('The Hobbit', 'JRR Tolkein', 500, false);
-    const Book_2 = new Book('Dune', 'Frank Herbert', 450, false);
-    const Book_3 = new Book('Dune Messiah', 'Frank Herbert', 740, false);
-    const Book_4 = new Book('A New Hope', 'George Lucas', 340, false);
-    const Book_5 = new Book('The Empire Strikes Back', 'George Lucas', 540, false);
+    const Book_1 = new myBook('The Hobbit', 'JRR Tolkein', 500, false);
+    const Book_2 = new myBook('Dune', 'Frank Herbert', 450, false);
+    const Book_3 = new myBook('Dune Messiah', 'Frank Herbert', 740, false);
+    const Book_4 = new myBook('A New Hope', 'George Lucas', 340, false);
+    const Book_5 = new myBook('The Empire Strikes Back', 'George Lucas', 540, false);
 
     myLibrary.push(Book_1);
     myLibrary.push(Book_2);
@@ -66,7 +72,8 @@ function addBookToLibrary(){
     let new_status = document.querySelector('#input-status').checked;
     console.log(new_status);
 
-    let new_Book = new Book(new_title, new_author, new_pages, new_status);
+    //Change for class.
+    let new_Book = new myBook(new_title, new_author, new_pages, new_status);
     myLibrary.push(new_Book);
 }
 
