@@ -1,21 +1,54 @@
-function createUser (name) {
-    const discordName = "@" + name;
-  
-    let reputation = 0;
-    const getReputation = () => reputation;
-    const giveReputation = () => reputation++;
-  
-    return { name, discordName, getReputation, giveReputation };
+let user = {
+  name: 'John',
+  surname: 'Smith'
+};
+
+Object.defineProperty(user, 'fullName', {
+  get(){
+    return `${this.name} ${this.surname}`
+  },
+
+  set(value){
+    [this.name, this.surname] = value.split(' ')
   }
-  
-  const josh = createUser("josh");
-  josh.giveReputation();
-  josh.giveReputation();
-  
-  console.log({
-    discordName: josh.discordName,
-    reputation: josh.getReputation()
-  });
-  // logs { discordName: "@josh", reputation: 2 }
+});
+
+user.fullName = "Test Name";
+
+console.log(user);
+
+class UserTwo {
+  constructor(name,surname){
+    this.name = name;
+    this.surname = surname;
+  };
+
+  get fullName(){
+    return `${this.name} ${this.surname}`;
+  };
+
+  set fullName(value) {
+    [this.name, this.surname] = value.split(" ");
+  };
+
+  sayHi() {
+    console.log(this.name)
+  };
+    
+}
+
+newUser = new UserTwo('Jane', 'Willis');
+
+console.log(newUser);
+let P1 = {
+  name: "Bob"
+}
+
+let P2 = class {
+  name = "Jill"
+}
+
+
+
 
 
