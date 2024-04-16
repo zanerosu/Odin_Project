@@ -2,6 +2,9 @@ export function loadHome(){
     
     const mainContent = document.querySelector("#content");
 
+    const homepage = document.createElement("div");
+    homepage.id = "homepage";
+
     const homeText = document.createElement("div");
     homeText.id = "main-text";
 
@@ -15,10 +18,12 @@ export function loadHome(){
     homeText.appendChild(homeText_h1);
     homeText.appendChild(homeText_btn);
 
-    mainContent.appendChild(homeText);
+    homepage.appendChild(homeText);
 
     const mainImg = document.createElement("div");
     mainImg.id = "main-img"
 
-    mainContent.appendChild(mainImg);
+    homepage.appendChild(mainImg);
+
+    mainContent.appendChild(homepage);
 }
