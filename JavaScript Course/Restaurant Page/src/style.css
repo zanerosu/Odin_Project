@@ -3,7 +3,7 @@
 
 body{
     margin: 0;
-    background-color: #3a0002;
+    background-color: #ead2ae;
 }
 
 header{
@@ -49,11 +49,13 @@ nav{
 
 #content{
     display:grid;
+    background: linear-gradient(30deg, rgba(196,28,28,1) 0%, rgba(74,0,3,1) 47%, rgba(58,0,2,1) 72%);
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     height:800px;
     margin-top: 10%;
     width:100%;
+    padding:20px;
 }
 
 #main-text{
@@ -86,11 +88,11 @@ h1{
 }
 
 #main-img{
-    background-image: url("./images/Pan_Image.jpg");
+    background-image: url("./images/Cooked_Food2.jpg");
     box-sizing: border-box;
     background-size: cover;
+    background-repeat: no-repeat;
     margin-right: 10%;
-    
     border-radius: 30px;
 }
 
