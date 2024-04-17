@@ -1,10 +1,10 @@
 import './style.css';
 import { loadHome } from './homepage';
 import { loadMenu} from './menu';
+import { loadContact } from './contact';
 
 const nav_Home = document.querySelector("#nav-Home");
 const nav_Menu = document.querySelector("#nav-Menu");
-const nav_About = document.querySelector("#nav-About");
 const nav_Contact = document.querySelector("#nav-Contact");
 
 
@@ -25,12 +25,7 @@ nav_Menu.addEventListener('click', (event)=>{
     loadMenu();
 })
 
-nav_About.addEventListener('click', (event)=>{
-    clearContent();
-    
-})
-
 nav_Contact.addEventListener('click', (event)=>{
     clearContent();
-    
+    loadContact();
 })
