@@ -1,3 +1,6 @@
 import './style.css';
+import {createTodo, getTodos} from './todo';
 
-console.log("TESTING1233")
+console.log("TEST");
+
+console.log(getTodos());

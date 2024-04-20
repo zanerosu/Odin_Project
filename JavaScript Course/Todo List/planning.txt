@@ -1,0 +1,4 @@
+Create different modules for each component of the todo list app.
+
+Todo module:
+1. Create new todo item.
