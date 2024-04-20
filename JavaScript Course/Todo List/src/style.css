@@ -1,3 +1,23 @@
+:root{
+    --main-bg-color: rgb(31, 31, 31);
+    --secondary-bg-color: rgb(49, 49, 49);
+    --main-accent-color: #47C7FC;
+}
+
 body{
-    background-color: red;
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    background-color: var(--main-bg-color);
+    height: 100vh;
+    margin: 0;
+}
+
+#sidebar{
+    grid-area: 1/1/2/2;
+    background-color: var(--secondary-bg-color);
+    margin: none;
+}
+
+#main-content{
+    grid-area: 1/2/2/3;
 }
