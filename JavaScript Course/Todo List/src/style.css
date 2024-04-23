@@ -4,7 +4,7 @@
     --main-bg-color: rgb(31, 31, 31);
     --secondary-bg-color: rgb(49, 49, 49);
     --main-accent-color: #47C7FC;
-    --faded-accent-color: #47c6fcb0;
+    --faded-accent-color: #47c6fc4b;
 }
 
 body{
@@ -31,6 +31,7 @@ body{
 
 #nav-menu{
     margin-left: 25px;
+    margin-right: 10px;
     padding-top: 20px;
 }
 
@@ -70,6 +71,12 @@ body{
     display: flex;
     align-items: center;
     padding:5px;
+    border-radius: 10px;
+}
+
+.sidebar-link:hover{
+    cursor: pointer;
+    background-color: var(--faded-accent-color);
 }
 
 .sidebar-link > h2{
