@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root{
     --main-bg-color: rgb(31, 31, 31);
     --secondary-bg-color: rgb(49, 49, 49);
     --main-accent-color: #47C7FC;
+    --faded-accent-color: #47c6fcb0;
 }
 
 body{
@@ -10,14 +13,67 @@ body{
     background-color: var(--main-bg-color);
     height: 100vh;
     margin: 0;
+    color:white;
+    font-family: "Roboto", sans-serif;
 }
 
 #sidebar{
     grid-area: 1/1/2/2;
     background-color: var(--secondary-bg-color);
     margin: none;
+    display: flex;
+    flex-direction: column;
 }
 
 #main-content{
     grid-area: 1/2/2/3;
 }
+
+#nav-menu{
+    margin-left: 25px;
+    padding-top: 20px;
+}
+
+#profile{
+    display: flex;
+    align-items: center;
+    
+    padding: 5px;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+#profile:hover{
+    background-color: rgb(160, 50, 50);
+}
+
+#profile-img{
+    background-image: url(./images/profile-pic-1.png);
+    width:40px;
+    height: 40px;
+    border-radius: 30px;
+    background-size: contain;
+    background-repeat: no-repeat; 
+    border:5px solid black;
+}
+
+#profile-name{
+    font-size: 1.3rem;
+    padding-left: 10px;
+}
+
+#new-task{
+    color: var(--main-accent-color);
+}
+
+.sidebar-link{
+    display: flex;
+    align-items: center;
+    padding:5px;
+}
+
+.sidebar-link > h2{
+    padding-left: 5px;
+    font-size: 1rem;
+}
+

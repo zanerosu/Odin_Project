@@ -1,11 +1,14 @@
 import { projectList } from "./projects";
 
+//Returns the project object based on the projects name.
 function getProject(projectName){
     return projectList.find((project) => project.name === projectName);
 }
 
+//Creates a Todo and assigns it to the general project or user selected project.
 function createTodo(projectName, title, desc, dueDate, priority){
-    const project = getProject(projectName);
+    //If no project name is given, it sets a default value of general.
+    const project = getProject(projectName ? projectName : "General");
     
     if (!project){
         console.error(`Project '${projectName}' not found.`);
@@ -13,7 +16,7 @@ function createTodo(projectName, title, desc, dueDate, priority){
     };
 
     project.todos.push({
-        projectName: projectName,
+        projectName: projectName ? projectName : "General",
         title: title,
         description: desc,
         createdDate: new Date(),
@@ -23,6 +26,7 @@ function createTodo(projectName, title, desc, dueDate, priority){
     });
 };
 
+//Gets all todos from all projects. 
 function getAllTodos(){
     const allTodos = [];
     projectList.forEach((project) => {
