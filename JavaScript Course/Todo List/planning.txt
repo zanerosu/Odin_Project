@@ -2,3 +2,9 @@ Create different modules for each component of the todo list app.
 
 Todo module:
 1. Create new todo item.
+2. Get all the todos.
+
+Project module:
+1. Create projects.
+2. Delete projects. 
+3. Add todos to projects.

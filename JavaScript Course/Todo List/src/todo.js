@@ -1,17 +1,36 @@
-const todoList = [];
+import { projectList } from "./projects";
 
-function createTodo(title, desc, dueDate, priority){
-    todoList.push({
+function getProject(projectName){
+    return projectList.find((project) => project.name === projectName);
+}
+
+function createTodo(projectName, title, desc, dueDate, priority){
+    const project = getProject(projectName);
+    
+    if (!project){
+        console.error(`Project '${projectName}' not found.`);
+        return;
+    };
+
+    project.todos.push({
+        projectName: projectName,
         title: title,
         description: desc,
         createdDate: new Date(),
         dueDate: dueDate,
-        priority: priority
-    })
+        priority: priority,
+        isComplete: false,
+    });
 };
 
-function getTodos(){
-    return todoList;
+function getAllTodos(){
+    const allTodos = [];
+    projectList.forEach((project) => {
+        allTodos.push(...project.todos);
+    })
+
+    return allTodos;
 }
 
-export {createTodo, getTodos};
+
+export {createTodo, projectList, getAllTodos};
