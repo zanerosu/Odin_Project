@@ -8,7 +8,7 @@ function getProject(projectName){
 //Creates a Todo and assigns it to the general project or user selected project.
 function createTodo(projectName, title, desc, dueDate, priority){
     //If no project name is given, it sets a default value of general.
-    const project = getProject(projectName ? projectName : "General");
+    const project = getProject(projectName ? projectName : "inbox");
     
     if (!project){
         console.error(`Project '${projectName}' not found.`);
@@ -16,7 +16,7 @@ function createTodo(projectName, title, desc, dueDate, priority){
     };
 
     project.todos.push({
-        projectName: projectName ? projectName : "General",
+        projectName: projectName ? projectName : "inbox",
         title: title,
         description: desc,
         createdDate: new Date(),
@@ -37,4 +37,4 @@ function getAllTodos(){
 }
 
 
-export {createTodo, projectList, getAllTodos};
+export {createTodo, projectList, getAllTodos, getProject};

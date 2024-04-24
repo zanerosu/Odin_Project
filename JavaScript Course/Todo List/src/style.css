@@ -45,7 +45,8 @@ body{
 }
 
 #profile:hover{
-    background-color: rgb(160, 50, 50);
+    background-color: var(--faded-accent-color);
+    cursor: pointer;
 }
 
 #profile-img{
@@ -84,3 +85,19 @@ body{
     font-size: 1rem;
 }
 
+.task-container{
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 10%;
+}
+
+
+#tasks-list{
+    width:fit-content;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+}
