@@ -1,6 +1,5 @@
 import { loadModal } from "./getDOM";
 import { getProject } from "./todo";
-import { createTodo } from "./todo";
 import { projectList } from "./todo";
 
 const mainContent = document.querySelector("#main-content");
@@ -9,7 +8,7 @@ export function loadTodos(projectName){
     //Clear current html
     mainContent.innerHTML = '';
     
-    const currProject = getProject(projectName ? projectName : "inbox");
+    const currProject = getProject(projectName ? projectName : "Inbox");
 
     const taskContainer = document.createElement('div');
     taskContainer.classList.add("task-container");
@@ -30,11 +29,12 @@ export function loadTodos(projectName){
         const taskCheck = document.createElement('input');
         taskCheck.type = "checkbox";
         taskCheck.name = "taskcheck";
+        taskCheck.id = `taskcheck-${todo.id}`;
         taskCheck.classList.add("task-check");
         task.appendChild(taskCheck);
 
         const taskLabel = document.createElement("label");
-        taskLabel.setAttribute('for', taskCheck.name);
+        taskLabel.setAttribute('for', taskCheck.id);
         taskLabel.classList.add("task-label");
         taskLabel.textContent = todo.title;
         task.appendChild(taskLabel);
@@ -64,7 +64,6 @@ export function loadTodos(projectName){
         //Create popup window
         loadModal();
         console.log(projectList);
-        loadTodos(currProject.name);
     });
 
     const addIcon = document.createElement('span');

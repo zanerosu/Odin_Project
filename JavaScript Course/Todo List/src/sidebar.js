@@ -5,7 +5,7 @@ const projectSection = document.querySelector("#project-list")
 
 export function loadSidebarProjects(){
     projectList.forEach((project) => {
-        if(project.name !== "inbox"){
+        if(project.name !== "Inbox"){
             const projectDiv = document.createElement('div');
             projectDiv.classList.add('sidebar-link');
             projectDiv.id = project.name;

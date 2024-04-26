@@ -1,12 +1,46 @@
 import { createTodo } from "./todo";
+import { projectList } from "./projects";
+import { loadTodos } from "./loadTasks";
 
-export const inbox = document.querySelector('#inbox');
+export const inbox = document.querySelector('#Inbox');
 
 
 export function loadModal(){
-    //Set Modal display to block
-    //Create dropdown options for all projects for project field.
-    //Retrieve all input elements of the modal and set their values to variables.
-    //Call createTodo with input parameters
+    const popupBox = document.querySelector("#popup-box");
+    popupBox.style.display="block";
 
+    setProjectNames();
+
+    const taskForm = document.querySelector("#task-form");
+    const submit_Btm = document.querySelector('#submit-btn')
+
+    submit_Btm.addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        const projectName = document.querySelector("#project-name").value;
+        const taskName = document.querySelector("#task-name").value;
+        const taskDesc = document.querySelector("#task-desc").value;
+        const dueDate = document.querySelector("#due-Date").value;
+        const priority = document.querySelector("#priority").value;
+        console.log("YO");
+        createTodo(projectName, taskName, taskDesc, dueDate, priority);
+        popupBox.style.display = "none";
+        loadTodos(projectName);
+        taskForm.reset();
+    });
+    
+}
+
+
+//Sets options for project name dropdown.
+function setProjectNames(){
+    const projectName = document.querySelector("#project-name");
+    projectName.innerHTML = '';
+
+    projectList.forEach((project) => {
+        const option = document.createElement('option')
+        option.value = project.name;
+        option.textContent = project.name;
+        projectName.add(option);
+    });
 }

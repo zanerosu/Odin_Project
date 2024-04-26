@@ -1,6 +1,6 @@
 const projectList = [
     {
-        name: "inbox",
+        name: "Inbox",
         todos: []
     },
     {
