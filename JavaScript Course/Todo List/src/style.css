@@ -93,12 +93,6 @@ body{
     margin-top: 10%;
 }
 
-.task{
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    border-bottom: 1px solid white;
-}
 
 #tasks-list{
     width:100%;
@@ -108,17 +102,39 @@ body{
     padding-left: 0px;
 }
 
-.task-check{
-    height: 30px;
-    width: 30px;
-    clip-path: circle(46% at 50% 50%);
+.task{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
 }
+
+.taskCheck{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:35px;
+    height:35px;
+    background-color:white;
+    border-radius: 30px;
+    margin-right: 10px;
+}
+
+.taskCheck:hover{
+    cursor: pointer;
+}
+
+.checkIcon{
+    display: none;
+    color:black;
+}
+
 
 #taskBtn{
     display: flex;
     align-items: center;
     cursor: pointer;
-
 }
 
 #popup-box{
@@ -131,6 +147,20 @@ body{
     left:50%;
     font-family: 'Roboto', sans-serif;
 }
+
+.header-group{
+    display: flex;
+}
+
+#popup-close{
+    margin-left: 120px;
+}
+
+#popup-close:hover{
+    cursor: pointer;
+}
+
+
 
 #task-form{
     display: flex;
@@ -150,4 +180,13 @@ textarea{
     font-family: 'Roboto', sans-serif;
 }
 
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: rgba(128,128,128,0.5);
+    display: none;
+}
 

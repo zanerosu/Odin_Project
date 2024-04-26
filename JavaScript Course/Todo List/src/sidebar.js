@@ -29,7 +29,3 @@ export function loadSidebarProjects(){
         }
     })
 }
-
-export function addTask(){
-    
-}

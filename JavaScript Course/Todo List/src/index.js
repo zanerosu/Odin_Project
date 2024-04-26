@@ -3,7 +3,7 @@ import {createTodo, projectList, getAllTodos} from './todo';
 import { createProject } from './projects';
 import { loadSidebarProjects } from './sidebar';
 import { loadTodos } from './loadTasks';
-import { inbox } from './getDOM';
+import { inbox, loadModal, sidebarAddTask } from './getDOM';
 
 //Mock data
 createTodo("Inbox", "Task 1", "Desc 1", "1/13/24", "High");
@@ -25,6 +25,10 @@ loadTodos(inbox.id);
 
 inbox.addEventListener('click', (event) => {
     loadTodos(inbox.id);
+})
+
+sidebarAddTask.addEventListener('click', (event) =>{
+    loadModal();
 })
 
 

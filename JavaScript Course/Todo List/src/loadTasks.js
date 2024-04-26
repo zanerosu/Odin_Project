@@ -1,6 +1,5 @@
 import { loadModal } from "./getDOM";
-import { getProject } from "./todo";
-import { projectList } from "./todo";
+import { getProject, projectList, removeTodo } from "./todo";
 
 const mainContent = document.querySelector("#main-content");
 
@@ -26,12 +25,18 @@ export function loadTodos(projectName){
         const task = document.createElement('li');
         task.classList.add("task");
 
-        const taskCheck = document.createElement('input');
-        taskCheck.type = "checkbox";
-        taskCheck.name = "taskcheck";
+        const taskCheck = document.createElement('div');
         taskCheck.id = `taskcheck-${todo.id}`;
-        taskCheck.classList.add("task-check");
+        taskCheck.classList.add("taskCheck");
+        
+        const checkIcon = document.createElement('span');
+        checkIcon.classList.add("material-symbols-outlined");
+        checkIcon.classList.add("checkIcon")
+        checkIcon.textContent = "Done";
+        taskCheck.appendChild(checkIcon);
         task.appendChild(taskCheck);
+
+        
 
         const taskLabel = document.createElement("label");
         taskLabel.setAttribute('for', taskCheck.id);
@@ -41,12 +46,27 @@ export function loadTodos(projectName){
 
         taskList.appendChild(task);
 
-        taskCheck.addEventListener('click', ()=>{
-            //Remove Todo from project
-            //Reload Todo list
-        });
+        taskCheck.addEventListener('click', completeTodo);
+       
 
-        
+        function completeTodo(){
+            console.log("CHECKED!")
+            removeTodo(currProject.name, todo.id);
+            loadTodos(projectName);
+            taskCheck.removeEventListener('click', completeTodo);
+            console.log(projectList);
+        }
+
+        taskCheck.addEventListener('mouseover', hoverCheck, false);
+        taskCheck.addEventListener('mouseout', remHoverCheck, false);
+
+        function hoverCheck(){
+            checkIcon.style.display = "block"
+        }
+
+        function remHoverCheck(){
+            checkIcon.style.display = "none"
+        }
     })
 
     taskContainer.appendChild(taskList);

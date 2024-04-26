@@ -30,6 +30,19 @@ function createTodo(projectName, title, desc, dueDate, priority){
     index += 1;
 };
 
+function removeTodo(projectName, todoID){
+    projectList.forEach((project) => {
+        if (project.name === projectName){
+            const todoIndex = project.todos.findIndex(todo => todo.id === todoID);
+            if (todoIndex !== -1){
+                project.todos.splice(todoIndex, 1);
+            } else {
+                console.log("Todo not found!");
+            }
+        }
+    })
+}
+
 //Gets all todos from all projects. 
 function getAllTodos(){
     const allTodos = [];
@@ -41,4 +54,4 @@ function getAllTodos(){
 }
 
 
-export {createTodo, projectList, getAllTodos, getProject};
+export {createTodo, projectList, getAllTodos, getProject, removeTodo};
