@@ -130,11 +130,30 @@ body{
     color:black;
 }
 
+#btnContainer{
+    display: flex;
+    justify-content: center;
+}
 
 #taskBtn{
     display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
+    background-color: var(--main-accent-color);
+    border: none;
+    border-radius: 10px;
+    color: black;
+    height:40px;
+    width: 200px;
+    font-weight: bold;
+    font-family: 'Roboto';
+    font-size: 1.3rem;
+}
+
+#taskBtn:hover{
+    cursor: pointer;
+    filter: brightness(50%);
 }
 
 #popup-box{
@@ -160,8 +179,6 @@ body{
     cursor: pointer;
 }
 
-
-
 #task-form{
     display: flex;
     flex-direction: column;
@@ -180,6 +197,23 @@ textarea{
     font-family: 'Roboto', sans-serif;
 }
 
+#submit-btn{
+    border:none;
+    background-color: var(--main-accent-color);
+    border: none;
+    border-radius: 10px;
+    color: black;
+    height:30px;
+    font-weight: bold;
+    font-family: 'Roboto';
+    font-size: 1.3rem;
+}
+
+#submit-btn:hover{
+    cursor: pointer;
+    filter: brightness(50%);
+}
+
 .overlay{
     position:fixed;
     top:0;
@@ -189,4 +223,5 @@ textarea{
     background-color: rgba(128,128,128,0.5);
     display: none;
 }
+
 

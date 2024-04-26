@@ -48,9 +48,10 @@ export function loadTodos(projectName){
 
         taskCheck.addEventListener('click', completeTodo);
        
+        // Use quotes around the file path to handle spaces and special characters
+
 
         function completeTodo(){
-            console.log("CHECKED!")
             removeTodo(currProject.name, todo.id);
             loadTodos(projectName);
             taskCheck.removeEventListener('click', completeTodo);
