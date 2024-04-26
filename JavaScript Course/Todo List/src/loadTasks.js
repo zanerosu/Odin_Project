@@ -1,5 +1,7 @@
-import { projectList } from "./projects";
+import { loadModal } from "./getDOM";
 import { getProject } from "./todo";
+import { createTodo } from "./todo";
+import { projectList } from "./todo";
 
 const mainContent = document.querySelector("#main-content");
 
@@ -38,8 +40,38 @@ export function loadTodos(projectName){
         task.appendChild(taskLabel);
 
         taskList.appendChild(task);
+
+        taskCheck.addEventListener('click', ()=>{
+            //Remove Todo from project
+            //Reload Todo list
+        });
+
+        
     })
 
     taskContainer.appendChild(taskList);
     mainContent.appendChild(taskContainer);
+
+    const btnContainer = document.createElement('div');
+    btnContainer.id = "btnContainer";
+
+    const addBtn = document.createElement('button');
+    // Set button text
+    addBtn.innerText = 'Add Task';
+    addBtn.id = 'taskBtn'
+    // Add click event listener to the button
+    addBtn.addEventListener('click', function() {
+        //Create popup window
+        loadModal();
+        console.log(projectList);
+        loadTodos(currProject.name);
+    });
+
+    const addIcon = document.createElement('span');
+    addIcon.classList.add("material-symbols-outlined")
+    addIcon.textContent = 'add_circle';
+    addBtn.prepend(addIcon);
+
+    btnContainer.appendChild(addBtn);
+    taskContainer.appendChild(btnContainer)
 }

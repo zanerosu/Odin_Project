@@ -66,5 +66,48 @@
             </ul>
         </div> -->
     </div>
+
+    <div id="popup-box" class="modal">
+        <div class="content">
+            <h1>New Task</h1>
+            <form id="task-form">
+
+                <div class="input-group">
+                    <label for="project-name">Project Name:</label>
+                    <select name="project-name" id="project-name">
+                        <!-- Options loaded dynamically with JS -->
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="task-name">Task Name:</label>
+                    <input type="text" name="task-name" id="task-name">
+                </div>
+
+                <div class="input-group">
+                    <label for="task-desc">Description:</label>
+                    <textarea name="task-desc" id="task-desc"></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label for="due-Date">Due Date:</label>
+                    <input type="date" name="due-Date" id="due-Date">
+                </div>
+                
+                <div class="input-group">
+                    <label for="priority">Priority:</label>
+                    <select name="priority" id="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+                
+                <input type="submit" value="Submit">
+
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

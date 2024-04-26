@@ -93,11 +93,42 @@ body{
     margin-top: 10%;
 }
 
+.task{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid white;
+}
 
 #tasks-list{
-    width:fit-content;
+    width:100%;
     list-style: none;
     display: flex;
     flex-direction: column;
     padding-left: 0px;
 }
+
+.task-check{
+    height: 30px;
+    width: 30px;
+    clip-path: circle(46% at 50% 50%);
+}
+
+#taskBtn{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+#task-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group{
+    display: flex;
+}
+
+
+
