@@ -28,6 +28,7 @@ function createTodo(projectName, title, desc, dueDate, priority){
         isComplete: false,
     });
     index += 1;
+    updateLocalStorage();
 };
 
 function removeTodo(projectName, todoID){
@@ -36,6 +37,7 @@ function removeTodo(projectName, todoID){
             const todoIndex = project.todos.findIndex(todo => todo.id === todoID);
             if (todoIndex !== -1){
                 project.todos.splice(todoIndex, 1);
+                updateLocalStorage();
             } else {
                 console.log("Todo not found!");
             }
@@ -53,5 +55,9 @@ function getAllTodos(){
     return allTodos;
 }
 
+
+function updateLocalStorage(){
+    localStorage.setItem('projectList', JSON.stringify(projectList));
+}
 
 export {createTodo, projectList, getAllTodos, getProject, removeTodo};

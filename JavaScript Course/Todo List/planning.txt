@@ -2,4 +2,4 @@ Create different modules for each component of the todo list app.
 
 Tasks:
 
-Create loal storage to store user data.
+Create local storage to store user data.

@@ -1,5 +1,5 @@
 import { loadModal } from "./getDOM";
-import { getProject, projectList, removeTodo } from "./todo";
+import { getProject, removeTodo } from "./todo";
 
 const mainContent = document.querySelector("#main-content");
 
@@ -7,7 +7,10 @@ export function loadTodos(projectName){
     //Clear current html
     mainContent.innerHTML = '';
     
-    const currProject = getProject(projectName ? projectName : "Inbox");
+    const storedProjects = JSON.parse(localStorage.getItem('projectList'));
+    const projectList = storedProjects ? storedProjects : [];
+
+    const currProject = getProject(projectName ? projectName : "Inbox", projectList);
 
     const taskContainer = document.createElement('div');
     taskContainer.classList.add("task-container");
@@ -56,6 +59,7 @@ export function loadTodos(projectName){
             loadTodos(projectName);
             taskCheck.removeEventListener('click', completeTodo);
             console.log(projectList);
+            
         }
 
         taskCheck.addEventListener('mouseover', hoverCheck, false);
