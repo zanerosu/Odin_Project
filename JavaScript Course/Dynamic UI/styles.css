@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(46, 46, 46);
+    margin: 0;
+}
+
+#nav-bar{
+    position: absolute;
+    left: -210px;
+    flex-direction: column;
+    width: 200px;
+    height: 100vh;
+    background-color: aliceblue;
+    padding-left: 10px;
+    transition: left 0.3s ease ;
+}
+
+.dropdown-btn{
+    padding-left: 200px;
+    font-size: 50px !important;
+    transition: right 0.3s ease ;
+}
+
+.dropdown-btn:hover{
+    cursor: pointer;
+}
+
+.nav-header{
+    font-family: sans-serif;
+    
+}
