@@ -11,5 +11,4 @@ export function displaySidebar() {
       sideBar.style.left = "0px";
     }
   });
-
 }
