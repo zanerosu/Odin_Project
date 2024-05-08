@@ -9,21 +9,21 @@ export function arrowFunctions() {
   rightChevron.addEventListener("click", () => {
     
     if (currentImage >= 0 && currentImage < images.length -1) {        
+      images[currentImage].classList.remove("active");
+      images[currentImage].classList.add("inactive");
       currentImage += 1;
-      images[currentImage].classList.add("active");
       images[currentImage].classList.remove("inactive");
-      images[currentImage - 1].classList.remove("active");
-      images[currentImage - 1].classList.add("inactive");
+      images[currentImage].classList.add("active");
     }
   });
 
   leftChevron.addEventListener("click", () => {
     if (currentImage > 0 && currentImage < images.length) {
+      images[currentImage].classList.remove("active");
+      images[currentImage].classList.add("inactive");
       currentImage -= 1;
-      images[currentImage].classList.add("active");
       images[currentImage].classList.remove("inactive");
-      images[currentImage + 1].classList.remove("active");
-      images[currentImage + 1].classList.add("inactive");
+      images[currentImage].classList.add("active");
     }
   });
 }

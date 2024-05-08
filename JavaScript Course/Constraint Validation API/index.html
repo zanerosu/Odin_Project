@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js" defer></script>
+    <title>Constraint Testing!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- novalidate removes the default html validation options such as "required" it lets us do all the validation within JS using the Constraint API  -->
+    <form novalidate>
+        <p>
+          <label for="mail">
+            <span>Please enter an email address:</span>
+            <input type="email" id="mail" name="mail" required minlength="8" />
+            <span class="error" aria-live="polite"></span>
+          </label>
+        </p>
+        <button>Submit</button>
+      </form>
+</body>
+</html>
