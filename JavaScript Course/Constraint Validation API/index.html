@@ -8,15 +8,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- novalidate removes the default html validation options such as "required" it lets us do all the validation within JS using the Constraint API  -->
-    <form novalidate>
-        <p>
-          <label for="mail">
-            <span>Please enter an email address:</span>
-            <input type="email" id="mail" name="mail" required minlength="8" />
-            <span class="error" aria-live="polite"></span>
-          </label>
-        </p>
+    <form id="main-form">
+        <label for="mail">
+          <span>Please enter an email address:</span>
+          <input type="email" id="mail" name="mail" required minlength="7" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        
+        <label for="country">
+          <span>Please enter a country:</span>
+          <input type="text" id="country" name="country" required minlength="3" pattern="[a-zA-Z]+"/>
+          <span class="error" aria-live="polite"></span>
+        </label>
+
+        <label for="zip">
+          <span>Please enter a zip code:</span>
+          <input type="text" id="zip" name="zip" required minlength="5" maxlength="5" pattern="[0-9]+"/>
+          <span class="error" aria-live="polite"></span>
+        </label>
+
+        <label for="password">
+          <span>Please enter a password:</span>
+          <input type="text" id="password" name="password" required minlength="5" pattern="[a-zA-Z0-9]{8,15}" maxlength="15"/>
+          <span class="error" aria-live="polite"></span>
+        </label>
+
+        <label for="password-conf">
+          <span>Please confirm password:</span>
+          <input type="text" id="password-conf" name="password-conf" required/>
+          <span class="error" aria-live="polite"></span>
+        </label>
+
         <button>Submit</button>
       </form>
 </body>
