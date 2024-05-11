@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Random Gif Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  </head>
+  <body>
+    <h1>Random Gif Generator</h1>
+    <div id="search-bar">
+        <input type="text">
+        <button id="search" class="material-symbols-outlined">search</button>
+    </div>
+    <div id="img-div">
+      <img id="gif" src="#" />
+    </div>
+    <button id="refresh" class="material-symbols-outlined">refresh</button>
+    <script>
+        const img = document.querySelector("img");
+        const refresh = document.querySelector("#refresh");
+        const search = document.querySelector("#search");
+        const input = document.querySelector('input');
+
+        var url = 'https://api.giphy.com/v1/gifs/translate?api_key=RVDzzDsyiTN1dFiX0jdSnAA34AVO2CVU&s='
+        var searchURL = "";
+
+        refreshGIF(url);
+        search.addEventListener('click', ()=>  {
+            if(input.value !== null){
+                searchURL = url + input.value;
+                refreshGIF(searchURL);
+                console.log(searchURL);
+            }
+        })
+        
+        refresh.addEventListener('click', ()=>{
+            refreshGIF(searchURL); 
+        });
+
+        function refreshGIF(url) {
+          fetch(
+            url,
+            { mode: "cors" }
+          )
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (response) {
+              img.src = response.data.images.original.url;
+            }).catch(function(error){
+                console.log("GOOFY AHH ERROR", error);
+                img.src = "./default.gif"
+            });
+        }
+    </script>
+  </body>
+</html>
