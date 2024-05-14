@@ -25,34 +25,49 @@
         var url = 'https://api.giphy.com/v1/gifs/translate?api_key=RVDzzDsyiTN1dFiX0jdSnAA34AVO2CVU&s='
         var searchURL = "";
 
-        refreshGIF(url);
+        refreshGif(url);
         search.addEventListener('click', ()=>  {
             if(input.value !== null){
                 searchURL = url + input.value;
-                refreshGIF(searchURL);
+                refreshGif(searchURL);
                 console.log(searchURL);
             }
         })
         
         refresh.addEventListener('click', ()=>{
-            refreshGIF(searchURL); 
+            refreshGif(searchURL); 
         });
 
-        function refreshGIF(url) {
-          fetch(
-            url,
-            { mode: "cors" }
-          )
-            .then(function (response) {
-              return response.json();
-            })
-            .then(function (response) {
-              img.src = response.data.images.original.url;
-            }).catch(function(error){
-                console.log("GOOFY AHH ERROR", error);
-                img.src = "./default.gif"
-            });
+        async function refreshGif(url){
+          try {
+            const response = await fetch(url, { mode: "cors" });
+            const catData = await response.json()
+            img.src = catData.data.images.original.url;
+            
+          } catch (error) {
+            console.error("GOOFY AHH ERROR", error);
+            img.src = "./default.gif"
+          }
         }
+
+        //Old API call that uses promises instead of Async/ Await
+        // function refreshGIF(url) {
+        //   fetch(
+        //     url,
+        //     { mode: "cors" }
+        //   )
+        //     .then(function (response) {
+        //       return response.json();
+        //     })
+        //     .then(function (response) {
+        //       img.src = response.data.images.original.url;
+        //     }).catch(function(error){
+        //         console.log("GOOFY AHH ERROR", error);
+        //         img.src = "./default.gif"
+        //     });
+        // }
+
+
     </script>
   </body>
 </html>
