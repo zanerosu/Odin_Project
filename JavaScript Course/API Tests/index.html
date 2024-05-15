@@ -42,6 +42,7 @@
           try {
             const response = await fetch(url, { mode: "cors" });
             const catData = await response.json()
+            console.log(catData);
             img.src = catData.data.images.original.url;
             
           } catch (error) {
