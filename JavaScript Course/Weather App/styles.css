@@ -62,7 +62,26 @@ body{
 #temp-container{
     display: flex;
     width: fit-content;
-    
+}
+
+#temp-units{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    font-size: 1.5rem;
+    color:rgba(255, 255, 255, 0.603);
+}
+
+#temp-units:hover{
+    cursor: pointer;
+}
+
+.active{
+    color:white !important;
+}
+
+#temp-units > *{
+    margin:4px;
 }
 
 #main-info > * {

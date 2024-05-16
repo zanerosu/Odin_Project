@@ -64,6 +64,9 @@ function parseData(weatherData) {
   };
 }
 
+let currUnit = "farenheit";
+// fahrenheit, celsius
+
 function displayWeather(weatherData) {
   console.log(weatherData);
   //Display Location Name
@@ -75,8 +78,23 @@ function displayWeather(weatherData) {
   weatherIcon.src = weatherData.icon;
 
   //Display Location Temp
+
+  //Default temp unit is F
   locationTemp = document.querySelector("#temp");
   locationTemp.textContent = `${Math.round(weatherData.temp_f)}°`;
+
+  const tempF = document.querySelector("#tempF");
+  const tempC = document.querySelector("#tempC");
+  tempF.addEventListener("click", () => {
+    locationTemp.textContent = `${Math.round(weatherData.temp_f)}°`;
+    tempC.classList.remove("active");
+    tempF.classList.add("active");
+  });
+  tempC.addEventListener("click", () => {
+    locationTemp.textContent = `${Math.round(weatherData.temp_c)}°`;
+    tempF.classList.remove("active");
+    tempC.classList.add("active");
+  });
 
   //Display Location Description and set background image
   setBackground(weatherData.desc, weatherData.localtime);
@@ -126,6 +144,18 @@ function displayForecast(forecastData) {
     const tempActual = document.createElement("h2");
     tempActual.classList.add("temp-actual");
     tempActual.textContent = `${Math.round(currDay.day.avgtemp_f)}°`;
+
+    const tempF = document.querySelector("#tempF");
+    const tempC = document.querySelector("#tempC");
+
+    tempF.addEventListener("click", () => {
+      tempActual.textContent = `${Math.round(currDay.day.avgtemp_f)}°`;
+    });
+
+    tempC.addEventListener("click", () => {
+      tempActual.textContent = `${Math.round(currDay.day.avgtemp_c)}°`
+    });
+
     forecastDay.appendChild(tempActual);
 
     const forecastDesc = document.createElement("p");
