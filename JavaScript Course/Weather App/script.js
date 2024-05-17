@@ -1,5 +1,6 @@
 getLocation();
 
+
 function getLocation() {
   const API_Key = "0fa82dbc2c9b4153983221559241005";
   const weatherURL = `https://api.weatherapi.com/v1/current.json?key=${API_Key}&q=`;
@@ -11,15 +12,24 @@ function getLocation() {
   const searchBtn = document.querySelector("#search");
   const searchInput = document.querySelector("input");
 
-  searchBtn.addEventListener("click", () => {
+  const handleSearch = () => {
     if (searchInput.value !== null) {
       userLocation = searchInput.value;
       searchInput.value = "";
       getWeather(weatherURL, userLocation);
       getForecast(forecastURL, userLocation);
     }
-  });
+  }
+
+  searchBtn.addEventListener("click", handleSearch);
+  searchInput.addEventListener('keydown', (event) => {
+    if (event.key === "Enter"){
+      handleSearch();
+    }
+  })
 }
+
+
 
 async function getWeather(url, location) {
   try {
@@ -40,6 +50,7 @@ async function getForecast(url, location) {
     displayForecast(forecastData.forecast.forecastday);
   } catch (error) {
     console.error("Error fetching forcast info.", error);
+    alert("Please enter in a valid Country, City, or Zip code!")
   }
 }
 
@@ -64,14 +75,17 @@ function parseData(weatherData) {
   };
 }
 
-let currUnit = "farenheit";
-// fahrenheit, celsius
 
 function displayWeather(weatherData) {
   console.log(weatherData);
   //Display Location Name
   locationName = document.querySelector("#name");
-  locationName.textContent = weatherData.name;
+  locationName.textContent = `${weatherData.name} - ${weatherData.country}`;
+
+  //Display location time:
+  locationTime = document.querySelector("#curr-time");
+  formattedTime = weatherData.localtime.split(" ")[1];
+  locationTime.textContent = `Local Time: ${formattedTime}`;
 
   //Display Weather Icon
   weatherIcon = document.querySelector("#weather-icon");
@@ -118,6 +132,33 @@ function displayForecast(forecastData) {
   const forecastContainer = document.querySelector("#forecast-info");
   forecastContainer.innerHTML = "";
   console.log(forecastData);
+
+  let mouseDown = false;
+  let startX, scrollLeft;
+  
+  const startDragging  = (e) => {
+    mouseDown = true;
+    startX = e.pageX - forecastContainer.offsetLeft;
+    scrollLeft = forecastContainer.scrollLeft;
+  }
+
+  const stopDragging = (e) => {
+    mouseDown = false;
+  }
+
+  const move = (e) => {
+    e.preventDefault();
+    if(!mouseDown) {return;}
+    const x = e.pageX - forecastContainer.offsetLeft;
+    const scroll = x - startX;
+    forecastContainer.scrollLeft = scrollLeft - scroll;
+  }
+
+  forecastContainer.addEventListener('mousemove', move, false);
+  forecastContainer.addEventListener('mousedown', startDragging, false);
+  forecastContainer.addEventListener('mouseup', stopDragging, false);
+  forecastContainer.addEventListener('mouseleave', stopDragging, false);
+
 
   forecastData.forEach((currDay) => {
     const forecastDay = document.createElement("div");

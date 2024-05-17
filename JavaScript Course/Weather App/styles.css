@@ -109,16 +109,43 @@ body{
 
 #forecast-info{
     display: flex;
-    height:200px;
+    height:170px;
     padding: 20px;
     min-width: 300px;
     max-width: 800px;
     margin: 0 auto;
-    overflow: hidden;
     overflow-x: scroll;
     gap:40px;
     background-color: rgba(0, 0, 0, 0.384);
     border-radius: 30px;
+}
+
+#forecast-info:hover{
+    cursor: grab;
+}
+
+/* Customize scrollbar for WebKit browsers */
+#forecast-info::-webkit-scrollbar {
+    height: 8px; 
+}
+
+#forecast-info::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0); 
+    border-radius: 10px;
+}
+
+#forecast-info::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255); 
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1); 
+}
+
+#forecast-info::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.795);
+}
+
+#forecast-info::-webkit-scrollbar-thumb:active {
+    background-color: rgb(255, 255, 255); 
 }
 
 .forecast-day{
