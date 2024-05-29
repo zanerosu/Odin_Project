@@ -202,4 +202,4 @@ console.log(test.insertAt(2, 10));
 console.log(test.toString());
 
 console.log(test.removeAt(2));
-console.log(test.toString());
+console.log(test.toString());gi
