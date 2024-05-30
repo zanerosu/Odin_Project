@@ -1,205 +1,110 @@
 class Node {
-  constructor(value = null, next = null) {
+  constructor(key, value) {
+    this.key = key;
     this.value = value;
-    this.next = next;
+    this.next = null;
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor() {
     this.head = null;
-    this.size = 0;
   }
 
-  append(value) {
-    const newNode = new Node(value);
-    if (!this.head) {
-      this.head = newNode;
-    } else {
-      let current = this.head;
-      while (current.next) {
-        current = current.next;
-      }
-      current.next = newNode;
+  append(key, value) {
+    if (this.head === null) {
+      this.head = new Node(key, value);
+      return;
     }
-    this.size++;
-  }
 
-  prepend(value) {
-    const newNode = new Node(value, this.head);
-    this.head = newNode;
-    this.size++;
-  }
-
-  size() {
-    return this.size;
-  }
-
-  head() {
-    return this.head;
-  }
-
-  tail() {
     let current = this.head;
-    while (current.next) {
+    while (current.next !== null) {
+      if (current.key === key) {
+        current.value = value; // Update value if key exists
+        return;
+      }
       current = current.next;
     }
 
-    return current;
+    if (current.key === key) {
+      current.value = value; // Update value if key exists
+    } else {
+      current.next = new Node(key, value); // Append new node
+    }
   }
 
-  at(index) {
-    if (index < 0 || index > this.size) {
-      return null;
-    }
-    let currentIndx = 0;
+  find(key) {
     let current = this.head;
-    while (current.next) {
-      if (currentIndx === index) {
-        return current;
-      } else {
-        currentIndx++;
-        current = current.next;
+    while (current !== null) {
+      if (current.key === key) {
+        return current.value;
       }
+      current = current.next;
     }
+    return null;
+  }
+  /**
+   * iterates through the linked list and counts how many keys there are.
+   */
+  countNodes() {
+    let count = 0;
+    // iterate through the linked list and incremement count for how many nodes.
+    let current = this.head;
+    while (current !== null) {
+      count++;
+      current = current.next;
+    }
+    return count;
   }
 
-  pop() {
-    if (this.size === 0) {
-      return null;
+  /**
+   * Removes the node with the specified key and returns the value.
+   * If the key is not found, returns null.
+   */
+  pop(key) {
+    if (this.head === null) {
+      return null; // List is empty
     }
-    if (this.size === 1) {
-      value = this.head.value;
-      this.head = null;
-      this.size--;
+
+    if (this.head.key === key) {
+      const value = this.head.value;
+      this.head = this.head.next; // Remove the head node
       return value;
     }
 
     let current = this.head;
-    let prev = null;
-
-    while (current.next) {
-      prev = current;
-      current = current.next;
-    }
-
-    const value = current.value;
-    prev.next = null;
-    this.size--;
-    return value;
-  }
-
-  contains(value) {
-    if (this.size < 1) {
-      return false;
-    }
-    let current = this.head;
-    while (current.next) {
-      if (current.value === value) {
-        return true;
+    while (current.next !== null) {
+      if (current.next.key === key) {
+        const value = current.next.value;
+        current.next = current.next.next; // Remove the node
+        return value;
       }
       current = current.next;
     }
-    return false;
+
+    return null; // Key not found
   }
 
-  find(value) {
-      let current = this.head;
-      let currIndex = 0;
-      while (current) {
-        if (current.value === value) {
-          return currIndex;
-        }
-        current = current.next;
-        currIndex++;
-        }
-    return null
+  getKeys() {
+    const keysArray = [];
+    let current = this.head;
+    while (current !== null) {
+      keysArray.push(current.key);
+      current = current.next;
     }
+    return keysArray;
+  }
 
-    toString(){
-        let string = "";
-        let current = this.head;
-        while(current){
-            if (current.next){
-                string += `( ${current.value} ) -> `
-                current = current.next;
-            }
-            else {
-                string += `( ${current.value} ) -> null`
-                break;
-            }
-        }
-        return string;
+  /**
+   * Returns an array containing all the values in the linked list.
+   */
+  getValues() {
+    const valuesArray = [];
+    let current = this.head;
+    while (current !== null) {
+      valuesArray.push(current.value);
+      current = current.next;
     }
-
-    insertAt(index, value){
-        if (index < 0 || index >= this.size){
-            return;
-        }
-
-        const newNode = new Node(value);
-        let current = this.head
-        let previous;
-        let count = 0;
-        while (count < index){
-            previous = current;
-            current = current.next;
-            count++
-        }
-        newNode.next = current;
-        previous.next = newNode
-        this.size++;
-    }
-
-    removeAt(index){
-        if (index < 0 || index >= this.size){
-            return;
-        }
-
-        let current = this.head;
-        let previous;
-        let count = 0;
-        
-        if (index === 0){
-            this.head = current.next;
-        } else {
-            while (count < index){
-                previous = current;
-                current = current.next
-                count++
-            }
-            previous.next = current.next;
-        }
-        this.size--;
-        return current.value;
-    }
+    return valuesArray;
+  }
 }
-
-const test = new LinkedList();
-test.append(2);
-console.log(test.toString());
-test.append(4);
-console.log(test.toString());
-test.append(6);
-console.log(test.toString());
-test.prepend(204);
-console.log(test.toString());
-
-console.log(test);
-console.log(test.head);
-console.log(test.tail());
-console.log(test.at(2));
-console.log(test.pop());
-console.log(test);
-
-console.log(test.contains(204));
-console.log(test.contains(1));
-console.log(test);
-console.log(test.find(204));
-console.log(test.toString());
-
-console.log(test.insertAt(2, 10));
-console.log(test.toString());
-
-console.log(test.removeAt(2));
-console.log(test.toString());
