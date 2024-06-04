@@ -30,4 +30,22 @@ prettyPrint(BST.root);
 BST.delete(5);
 prettyPrint(BST.root);
 
-console.log(BST.find(12));
+console.log(BST.find(10));
+
+console.log(`Level Order: ${BST.levelOrder()}`)
+console.log(`Level Order: ${BST.inOrder()}`);
+console.log(`Level Order: ${BST.preOrder()}`);
+console.log(`Level Order: ${BST.postOrder()}`);
+
+console.log(BST.height(BST.find(6)));
+
+console.log(BST.depth(BST.find(6)));
+
+console.log(BST.isBalanced());
+
+prettyPrint(BST.root);
+
+BST.rebalance();
+
+
+prettyPrint(BST.root);

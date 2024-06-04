@@ -94,6 +94,158 @@ export class Tree{
         return this.findRec(root.right, value)
         
     }
+
+    levelOrder(callback){
+        if (this.root == null) return [];
+        let queue = [];
+        let res = [];
+
+        queue.push(this.root);
+
+        while(queue.length > 0){
+            //Sets current node to node at front of queue and removes it.
+            let current = queue.shift();
+
+            if(callback){
+                callback(current);
+            } else {
+                res.push(current.value);
+            }
+
+            //Add left and right child to queue if any.
+            if (current.left){
+                queue.push(current.left);
+            };
+
+            if (current.right){
+                queue.push(current.right)
+            };
+        }
+        return callback ? undefined : res;
+    }
+
+    inOrder(callback){
+        let res = [];
+        this.inOrderRec(this.root, res, callback);
+
+        if (!callback){
+            return res;
+        }
+
+        
+    }
+
+    inOrderRec(node, res, callback){
+        if (node === null) return;
+        
+        this.inOrderRec(node.left, res, callback);
+        if(callback){
+            callback(node)
+        } else{
+            res.push(node.value);
+        }
+        this.inOrderRec(node.right, res, callback);
+    }
+
+    preOrder(callback){
+        let res = [];
+        this.preOrderRec(this.root, res, callback);
+
+        if (!callback){
+            return res;
+        }
+
+        
+    }
+
+    preOrderRec(node, res, callback){
+        if (node === null) return;
+        if(callback){
+            callback(node)
+        } else{
+            res.push(node.value);
+        }
+        
+        this.inOrderRec(node.left, res, callback);
+        
+        this.inOrderRec(node.right, res, callback);
+    }
+
+    postOrder(callback){
+        let res = [];
+        this.postOrderRec(this.root, res, callback);
+
+        if (!callback){
+            return res;
+        }
+
+        
+    }
+
+    postOrderRec(node, res, callback){
+        if (node === null) return;
+        
+        this.inOrderRec(node.left, res, callback);
+        
+        this.inOrderRec(node.right, res, callback);
+
+        if(callback){
+            callback(node)
+        } else{
+            res.push(node.value);
+        }
+    }
+
+    height(node){
+        if (node === null){
+            return 0;
+        }
+        return Math.max(this.height(node.left), this.height(node.right)) + 1;
+    }
+    
+    depth(node){
+        if (node === null){
+            return 0;
+        }
+
+        return this.depthRec(this.root, node.value, 0);
+
+    }
+
+    depthRec(node, value, depth){
+        if(node === null){
+            return "Node not in tree";
+        }
+
+        if (node.value === value){
+            return depth;
+        }
+
+        if (value < node.value){
+            return this.depthRec(node.left, value, depth + 1);
+        } else{
+            return this.depthRec(node.right, value, depth + 1);
+        }
+    }
+
+    isBalanced(){
+        const leftHeight = this.height(this.root.left);
+        const rightHeight = this.height(this.root.right);
+        
+        if (Math.abs(leftHeight - rightHeight) > 1){
+            return false
+        }
+
+        return true;
+    }
+
+    rebalance(){
+        const newArray = this.inOrder();
+        this.array = newArray;
+
+        this.root = createBST(newArray, 0, newArray.length - 1)
+    }
+
 }
 
 //Sorts and Removes Duplicates from Array
