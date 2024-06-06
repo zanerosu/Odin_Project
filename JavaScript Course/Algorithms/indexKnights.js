@@ -1,5 +1,5 @@
-import { knightMoves } from "./knightsTravails";
+import { knightMoves } from "./knightsTravails.js";
 
+console.log("test")
 
-
-//knightMoves([0,0], [1,2])
+//knightMoves()
