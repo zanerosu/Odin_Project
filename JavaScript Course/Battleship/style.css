@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+h1{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 4rem;
+    text-align: center;
+}
+
+#gameboards{
+    display: flex;
+    gap:10%;
+   justify-content: center;
+}
+
+.gameboard{
+    background-color: black;
+    width: 400px;
+    height: 400px;
+}
+
+.gameboardOpp{
+    background-color: black;
+    width: 400px;
+    height: 400px;
+}
+
+tr{
+    height: 10px; 
+    width:10px;
+}
