@@ -71,7 +71,7 @@ export class Gameboard {
       }
 
       //Attack will be invalid if it is where a previous shot landed
-      if (this.board[row][col] === 'O' || this.board[row][col] === "X"){
+      if (this.board[row][col] === 'O' || this.board[row][col] === 'X'){
         return "Shot already taken at these coordinates!"
       }
 
@@ -101,6 +101,7 @@ export class Gameboard {
       }
     }
     //All ships have been sunk
+
     return true;
     
   }

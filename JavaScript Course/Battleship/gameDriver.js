@@ -1,15 +1,48 @@
 import { Player } from "./player.js";
 import { Ship } from "./ship.js";
-import { displayBoard, displayOppBoard } from "./DOMManip.js";
+import { displayBoard, displayOppBoard, displayCurrTurn } from "./DOMManip.js";
 
 //Create default players with auto filled boards.
 export const playerOne = new Player("P1");
 export const playerTwo = new Player("P2");
-let currPlayer = playerOne;
 
 export function runGame(){
+    let currPlayer = playerOne;
+    let oppPlayer = playerTwo;
 
+    function switchTurn(){
+        const temp = currPlayer;
+        currPlayer = oppPlayer;
+        oppPlayer = temp; 
 
+        displayCurrTurn(currPlayer);
+        displayBoard(currPlayer);
+        displayOppBoard(oppPlayer, handleAttack);
+    }
+
+    function handleAttack(row, col){
+        const result = oppPlayer.playerBoard.recieveAttack(row, col);
+        displayBoard(currPlayer);
+        displayOppBoard(oppPlayer, handleAttack);
+
+        setTimeout(()=>{
+            if(result === "Game Over!"){
+                alert(`${currPlayer.name} wins!`);
+            } 
+            else if(result === "Shot already taken at these coordinates!"){
+                //alert(result);
+            }
+            else {
+                //alert(result)
+                switchTurn();
+            }
+        }, 100);
+        
+    }
+
+    displayCurrTurn(currPlayer);
+    displayBoard(currPlayer);
+    displayOppBoard(oppPlayer, handleAttack);
 }
 
 

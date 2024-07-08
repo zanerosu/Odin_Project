@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body{
+    font-family: "Bebas Neue", sans-serif;
+}
 
 h1{
-    font-family: "Bebas Neue", sans-serif;
     font-size: 4rem;
+    text-align: center;
+}
+
+#currTurn{
     text-align: center;
 }
 
