@@ -30,10 +30,10 @@ export function runGame(){
                 alert(`${currPlayer.name} wins!`);
             } 
             else if(result === "Shot already taken at these coordinates!"){
-                //alert(result);
+                alert(result);
             }
             else {
-                //alert(result)
+                alert(result)
                 switchTurn();
             }
         }, 100);
